@@ -3,8 +3,8 @@ module.exports = {
   content: ["./index.html", "./src/**/*.{jsx,js,tsx,ts}"],
   theme: {
     colors: {
-      platium: "#E6E6E6",
-      "arylide-yellow": "#D6C64C",
+      platium: "#E0E0E0",
+      orange: "#f97316",
     },
     extend: {},
   },
