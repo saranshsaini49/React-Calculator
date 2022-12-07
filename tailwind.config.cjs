@@ -5,7 +5,6 @@ module.exports = {
     extend: {
       colors: {
         platium: "#E0E0E0",
-        orange: "#f97316",
       },
     },
   },
