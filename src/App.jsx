@@ -1,9 +1,13 @@
-import { useState } from "react";
+import Buttons from "./components/Buttons";
+import Display from "./components/Display";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return <div className="App">Calculator</div>;
+  return (
+    <div className="w-screen h-screen">
+      <Display />
+      <Buttons />
+    </div>
+  );
 }
 
 export default App;
