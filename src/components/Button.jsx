@@ -1,36 +1,46 @@
 import React from "react";
 
-const Button = ({ item }) => {
+const Button = ({ item, display, setDisplay }) => {
+  const handleClick = (e) => {
+    const name = e.target.name;
+  };
   return (
     <div className="w-screen grid grid-cols-4 ">
       <button
-        name="AC"
+        name={item[0]}
         className={
           item.length == 3
             ? "grid col-span-2 border border-gray-600  items-center"
             : "border border-gray-600 "
         }
+        onClick={(e) => handleClick(e)}
       >
         {item[0]}
       </button>
 
-      <button name="+/-" className="border border-gray-600 ">
+      <button
+        name={item[1]}
+        className="border border-gray-600 "
+        onClick={(e) => handleClick(e)}
+      >
         {item[1]}
       </button>
       <button
-        name="%"
+        name={item[2]}
         className={
           item.length == 4
             ? `border border-gray-600`
             : `border border-gray-600 bg-orange-400 text-white`
         }
+        onClick={(e) => handleClick(e)}
       >
         {item[2]}
       </button>
       {item.length == 4 && (
         <button
-          name="/"
+          name={item[3]}
           className="border border-gray-600 bg-orange-400 text-white"
+          onClick={(e) => handleClick(e)}
         >
           {item[3]}
         </button>

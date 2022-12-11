@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Display = () => {
+const Display = ({ display }) => {
   return (
     <div className="w-full h-1/6 flex justify-end items-center ">
-      <div className="outline-none text-xl md:text-5xl p-4">{0}</div>
+      <div className="outline-none text-xl md:text-5xl p-4">{display}</div>
     </div>
   );
 };
