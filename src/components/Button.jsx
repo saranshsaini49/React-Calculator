@@ -3,6 +3,13 @@ import React from "react";
 const Button = ({ item, display, setDisplay }) => {
   const handleClick = (e) => {
     const name = e.target.name;
+    if (name != "AC" && name != "=") {
+      setDisplay(display + name);
+    } else if (name == "=") {
+      setDisplay(eval(display));
+    } else if (name == "AC") {
+      setDisplay("");
+    }
   };
   return (
     <div className="w-screen grid grid-cols-4 ">
