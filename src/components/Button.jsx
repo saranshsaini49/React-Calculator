@@ -12,6 +12,7 @@ const Button = ({ item, display, setDisplay }) => {
       } else if (name == "AC") {
         setDisplay("");
       } else if (name == "+/-") {
+        setDisplay(eval("-1*" + display));
       } else if (name == ".") {
       }
     }
@@ -22,7 +23,7 @@ const Button = ({ item, display, setDisplay }) => {
         name={item[0]}
         className={
           item.length == 3
-            ? "grid col-span-2 border border-gray-600  items-center"
+            ? "grid col-span-2 border border-gray-600 items-center"
             : "border border-gray-600 "
         }
         onClick={(e) => handleClick(e)}
