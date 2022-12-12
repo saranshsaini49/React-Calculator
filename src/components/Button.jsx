@@ -3,12 +3,17 @@ import React from "react";
 const Button = ({ item, display, setDisplay }) => {
   const handleClick = (e) => {
     const name = e.target.name;
-    if (name != "AC" && name != "=") {
-      setDisplay(display + name);
-    } else if (name == "=") {
-      setDisplay(eval(display));
-    } else if (name == "AC") {
-      setDisplay("");
+    if (display === "" && !(name >= "0" && name <= "9")) {
+    } else {
+      if (name != "AC" && name != "=" && name !== "+/-" && name != ".") {
+        setDisplay(display + name);
+      } else if (name == "=") {
+        setDisplay(eval(display));
+      } else if (name == "AC") {
+        setDisplay("");
+      } else if (name == "+/-") {
+      } else if (name == ".") {
+      }
     }
   };
   return (
