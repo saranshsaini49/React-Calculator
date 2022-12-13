@@ -3,6 +3,9 @@ import React from "react";
 const Button = ({ item, display, setDisplay }) => {
   const handleClick = (e) => {
     const name = e.target.name;
+    if (display === "" && name == ".") {
+      setDisplay("0.");
+    }
     if (display === "" && !(name >= "0" && name <= "9")) {
     } else {
       if (name != "AC" && name != "=" && name !== "+/-" && name != ".") {
