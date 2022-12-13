@@ -5,6 +5,8 @@ const Button = ({ item, display, setDisplay }) => {
     const name = e.target.name;
     if (display === "" && name == ".") {
       setDisplay("0.");
+    } else if (name == ".") {
+      setDisplay(display + ".");
     }
     if (display === "" && !(name >= "0" && name <= "9")) {
     } else {
