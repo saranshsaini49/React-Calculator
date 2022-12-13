@@ -5,20 +5,26 @@ const Button = ({ item, display, setDisplay }) => {
     const name = e.target.name;
     if (display === "" && name == ".") {
       setDisplay("0.");
-    } else if (name == ".") {
-      setDisplay(display + ".");
+    } else if (display !== "" && name == ".") {
+      const op = display.charAt(display.length - 1);
+      if (!(op >= "0" && op <= "9")) {
+        setDisplay(display + "0.");
+      } else {
+        setDisplay(display + ".");
+      }
     }
     if (display === "" && !(name >= "0" && name <= "9")) {
     } else {
       if (name != "AC" && name != "=" && name !== "+/-" && name != ".") {
-        setDisplay(display + name);
+        const op = display.charAt(display.length - 1);
+        if (op == ".") setDisplay(display + "0" + name);
+        else setDisplay(display + name);
       } else if (name == "=") {
         setDisplay(eval(display));
       } else if (name == "AC") {
         setDisplay("");
       } else if (name == "+/-") {
         setDisplay(eval("-1*" + display));
-      } else if (name == ".") {
       }
     }
   };
