@@ -24,60 +24,53 @@ const data = [
 const Button = ({ item, display, setDisplay }) => {
   const handleKey = (e) => {
     const name = e.key;
-    if (name === "Enter") {
-      setDisplay(eval(display));
-    }
-    if (data.includes(name)) {
-      if (display === "" && name == ".") {
-        setDisplay("0.");
-      } else if (display !== "" && name == ".") {
-        const op = display.charAt(display.length - 1);
-        if (!(op >= "0" && op <= "9")) {
-          setDisplay(display + "0.");
-        } else {
-          setDisplay(display + ".");
-        }
-      }
-      if (display === "" && !(name >= "0" && name <= "9")) {
-      } else {
-        if (name != "AC" && name != "=" && name !== "+/-" && name != ".") {
-          const op = display.charAt(display.length - 1);
-          if (op == ".") setDisplay(display + "0" + name);
-          else setDisplay(display + name);
-        } else if (name == "=") {
-          setDisplay(eval(display));
-        } else if (name == "AC") {
-          setDisplay("");
-        } else if (name == "+/-") {
-          setDisplay(eval("-1*" + display));
-        }
-      }
-    }
+    console.log(name);
   };
+
   const handleClick = (e) => {
     const name = e.target.name;
-    if (display === "" && name == ".") {
-      setDisplay("0.");
-    } else if (display !== "" && name == ".") {
-      const op = display.charAt(display.length - 1);
-      if (!(op >= "0" && op <= "9")) {
-        setDisplay(display + "0.");
-      } else {
-        setDisplay(display + ".");
-      }
+    if (name == "AC") {
+      setDisplay("");
     }
-    if (display === "" && !(name >= "0" && name <= "9")) {
-    } else {
-      if (name != "AC" && name != "=" && name !== "+/-" && name != ".") {
-        const op = display.charAt(display.length - 1);
-        if (op == ".") setDisplay(display + "0" + name);
-        else setDisplay(display + name);
+    if (display != "") {
+      const lastChar = display.charAt(display.length - 1);
+      if (name >= "0" && name <= "9") {
+        setDisplay(display + name);
       } else if (name == "=") {
-        setDisplay(eval(display));
-      } else if (name == "AC") {
-        setDisplay("");
+        setDisplay(eval(display) + "");
+      } else if (
+        name == "+" ||
+        name == "-" ||
+        name == "/" ||
+        name == "*" ||
+        name == "%"
+      ) {
+        if (
+          lastChar == "+" ||
+          lastChar == "-" ||
+          lastChar == "/" ||
+          lastChar == "*" ||
+          lastChar == "%"
+        ) {
+        } else if (lastChar == ".") {
+          setDisplay(display + "0" + name);
+        } else {
+          setDisplay(display + name);
+        }
       } else if (name == "+/-") {
-        setDisplay(eval("-1*" + display));
+        setDisplay(eval("-1*" + display) + "");
+      } else if (name == ".") {
+        if (lastChar >= "0" && lastChar <= "9") {
+          setDisplay(display + ".");
+        } else {
+          setDisplay(display + "0.");
+        }
+      }
+    } else {
+      if (name >= "0" && name <= "9") {
+        setDisplay(name);
+      } else if (name == ".") {
+        setDisplay("0.");
       }
     }
   };
@@ -85,13 +78,10 @@ const Button = ({ item, display, setDisplay }) => {
     <div className="w-screen grid grid-cols-4 ">
       <button
         name={item[0]}
-        className={
-          item.length == 3
-            ? "grid col-span-2 border border-gray-600 items-center"
-            : "border border-gray-600 "
-        }
+        className={`border border-gray-600
+          ${item.length == 3 ? "grid col-span-2  items-center" : ""}`}
         onClick={(e) => handleClick(e)}
-        onKeyPress={(e) => handleKey(e)}
+        onKeyDown={(e) => handleKey(e)}
       >
         {item[0]}
       </button>
@@ -100,19 +90,19 @@ const Button = ({ item, display, setDisplay }) => {
         name={item[1]}
         className="border border-gray-600 "
         onClick={(e) => handleClick(e)}
-        onKeyPress={(e) => handleKey(e)}
+        onKeyDown={(e) => handleKey(e)}
       >
         {item[1]}
       </button>
       <button
         name={item[2]}
-        className={
+        className={`border border-gray-600 ${
           item.length == 4
-            ? `border border-gray-600`
+            ? ``
             : `border border-gray-600 bg-orange-400 text-white`
-        }
+        }`}
         onClick={(e) => handleClick(e)}
-        onKeyPress={(e) => handleKey(e)}
+        onKeyDown={(e) => handleKey(e)}
       >
         {item[2]}
       </button>
@@ -121,7 +111,7 @@ const Button = ({ item, display, setDisplay }) => {
           name={item[3]}
           className="border border-gray-600 bg-orange-400 text-white"
           onClick={(e) => handleClick(e)}
-          onKeyPress={(e) => handleKey(e)}
+          onKeyDown={(e) => handleKey(e)}
         >
           {item[3]}
         </button>
