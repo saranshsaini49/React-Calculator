@@ -24,7 +24,6 @@ const data = [
 const Button = ({ item, display, setDisplay }) => {
   const handleKey = (e) => {
     const name = e.key;
-    console.log(name);
   };
 
   const handleClick = (e) => {
@@ -34,6 +33,7 @@ const Button = ({ item, display, setDisplay }) => {
     }
     if (display != "") {
       const lastChar = display.charAt(display.length - 1);
+
       if (name >= "0" && name <= "9") {
         setDisplay(display + name);
       } else if (name == "=") {
@@ -61,7 +61,9 @@ const Button = ({ item, display, setDisplay }) => {
         setDisplay(eval("-1*" + display) + "");
       } else if (name == ".") {
         if (lastChar >= "0" && lastChar <= "9") {
-          setDisplay(display + ".");
+          if (!isDecimal()) {
+            setDisplay(display + ".");
+          }
         } else {
           setDisplay(display + "0.");
         }
@@ -73,6 +75,26 @@ const Button = ({ item, display, setDisplay }) => {
         setDisplay("0.");
       }
     }
+  };
+  const isDecimal = () => {
+    let i = display.length - 1;
+
+    while (i >= 0) {
+      if (
+        display.charAt(i) == "+" ||
+        display.charAt(i) == "-" ||
+        display.charAt(i) == "/" ||
+        display.charAt(i) == "*" ||
+        display.charAt(i) == "%"
+      ) {
+        return false;
+      }
+      if (display.charAt(i) == ".") {
+        return true;
+      }
+      i--;
+    }
+    return false;
   };
   return (
     <div className="w-screen grid grid-cols-4 ">
