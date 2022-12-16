@@ -24,10 +24,16 @@ const data = [
 const Button = ({ item, display, setDisplay }) => {
   const handleKey = (e) => {
     const name = e.key;
+    if (name == "Enter") {
+      handlerFunction("=");
+    } else if (name == "Backspace") {
+      handlerFunction("AC");
+    } else if (data.includes(name)) {
+      handlerFunction(name);
+    }
   };
 
-  const handleClick = (e) => {
-    const name = e.target.name;
+  const handlerFunction = (name) => {
     if (name == "AC") {
       setDisplay("");
     }
@@ -75,6 +81,11 @@ const Button = ({ item, display, setDisplay }) => {
         setDisplay("0.");
       }
     }
+  };
+
+  const handleClick = (e) => {
+    const name = e.target.name;
+    handlerFunction(name);
   };
   const isDecimal = () => {
     let i = display.length - 1;
