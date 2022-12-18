@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = ({ item, display, setDisplay, handlerFunction }) => {
+const Button = ({ item, handlerFunction }) => {
   const handleClick = (e) => {
     const name = e.target.name;
     handlerFunction(name);

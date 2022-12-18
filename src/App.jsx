@@ -37,7 +37,7 @@ function App() {
         handlerFunction(name);
       }
     });
-  }, []);
+  }, [display]);
 
   const handlerFunction = (name) => {
     if (name == "AC") {
@@ -111,7 +111,7 @@ function App() {
   return (
     <div className="w-screen h-screen">
       <Display display={display} />
-      <Buttons display={display} setDisplay={setDisplay} />
+      <Buttons handlerFunction={handlerFunction} />
     </div>
   );
 }
